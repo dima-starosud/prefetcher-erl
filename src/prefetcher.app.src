@@ -1,0 +1,32 @@
+{application, prefetcher, [
+    {description, "Caching 3rd party endpoint prefetcher"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {mod, {prefetcher_app, []}},
+    {applications, [
+        kernel,
+        stdlib
+    ]},
+    {env, [
+        {endpoints, [
+            #{
+                id => <<"exchangerates">>,
+                callback =>
+                    {
+                        prefetcher_exchangerates,
+                        query,
+                        [<<"https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5">>]
+                    },
+                ttl => {60, second},
+                update_period => {30, second},
+                retry_period => {5, second}
+            }
+        ]},
+        {cowboy_opts, [
+            {port, 8080}
+        ]}
+    ]},
+    {modules, []},
+    {licenses, ["Apache-2.0"]},
+    {links, []}
+]}.
