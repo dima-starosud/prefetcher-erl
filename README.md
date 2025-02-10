@@ -39,6 +39,7 @@ Note, there is no configuration period, in case of the callback crashes, in this
 
 ## TODO
 
+* Switch to `erlcron`.
 * Use a dedicated logger instead of `io:format`.
 * Add functions `-spec()`.
 * Move the core of prefetcher to a separate application, which can be used for different sets of 3rd party endpoints.
